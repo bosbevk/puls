@@ -30,7 +30,7 @@ it with the setting it lacks. Its calls only read, so a round's calls run at onc
 
 `RecipeTools.FindRecipes(query, source, maxResults)` with no `source` hands the search to `RecipeScatter`: four
 enabled sites with their own search, at random, asked at once, their hits in a random order and printed
-`1. {title} · {site} · {link}` ([ADR 0078](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0078-a-recipe-search-asks-several-sites.md)). Every hit is shuffled
+`1. {title} · {site} · {link}` ([ADR 0078](../adr/0078-a-recipe-search-asks-several-sites.md)). Every hit is shuffled
 before the list is chosen, so no site or page settles on top, and a title shows without the country (`HitTitle`),
 since every site is South African; `skip` leaves out sites already asked for this dish. A named `source` looks the
 site up by its short name (any case), asks that site's `IRecipeSource` and prints `1. {title} · {link}`. At most 10,
@@ -122,7 +122,7 @@ which the print calls an estimate. A line holding an amount it can't scale is ma
 number left after the amount it scaled is marked `(only the first amount scaled)`, never passed over: it can't tell a
 pack's size from a second ingredient run into the line, so the cook decides.
 
-The library ([ADR 0082](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0082-the-recipe-library-is-an-open-feed.md)). `Library/Store/` keeps each new proper
+The library ([ADR 0082](../adr/0082-the-recipe-library-is-an-open-feed.md)). `Library/Store/` keeps each new proper
 recipe from a table site, field by field, for good, in Mongo (`MongoRecipeStore`, on `RECIPES_MONGO_URL`). A page with
 no recipe data is kept only if `Reading/PageText/` finds its recipe plainly, under its headings (`PageTextRecipe`) or,
 failing that, as a run of amounts followed by steps (`PlainRunRecipe`), and the cook's first read of it stays its
@@ -244,7 +244,7 @@ trial that leaves the library alone counts nothing ([ADR 0083](https://github.co
 what's kept, opens one as a form, and removes it; `RecipeForm` turns a recipe into its fields and back and holds its rules: a name, an ingredient and a step are
 required, and the page and the site can't change. A save marks the copy edited, and a later read can't overwrite it, since keeping only inserts. Removing also
 excludes the page. `ExcludedPagesScreen` (`excluded-pages`) lists the excluded pages and clears one, so the next read looks again
-([ADR 0082](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0082-the-recipe-library-is-an-open-feed.md)).
+([ADR 0082](../adr/0082-the-recipe-library-is-an-open-feed.md)).
 
 ## A recipe on its way out
 

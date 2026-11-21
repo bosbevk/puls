@@ -5,7 +5,7 @@
 > cooking-teaching research says works, what SA households need, and which AI techniques help. Each idea says why,
 > how it fits our engine and what it costs, and then the whole list is put in an order. **Elsewhere:** how the cook
 > works today in [Puls.Identity](../projects/Puls.Identity.md); the recipe library in
-> [ADR 0082](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0082-the-recipe-library-is-an-open-feed.md).
+> [ADR 0082](../adr/0082-the-recipe-library-is-an-open-feed.md).
 
 ![The cook, next: what the competition misses, what SA households need, and 18 ideas in three waves](../diagrams/PULS_COOK.svg)
 
@@ -112,7 +112,7 @@ vetted SA library, faster and cheaper than reading the page again. That library 
 from one of our recipe sites is kept for good, as a proper recipe, and it's an open feed the cook reads like any other
 source. It isn't searched first, though. A library-first search would stop finding new recipes, so every search still
 asks the sites, and the library is one more voice among them
-([ADR 0082](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0082-the-recipe-library-is-an-open-feed.md)). Embeddings come later, once
+([ADR 0082](../adr/0082-the-recipe-library-is-an-open-feed.md)). Embeddings come later, once
 keyword search falls short.
 
 Swaps the right way (hybrid). The research survey on ingredient substitution says: hard rules in code for what must

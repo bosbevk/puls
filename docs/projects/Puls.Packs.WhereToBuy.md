@@ -15,7 +15,7 @@ the map in code and hands the model a short table. It is a pack
 ([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)), so any identity can use it, and it could be served as an MCP
 server unchanged ([ADR 0028](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0028-packs-stay-convertible-to-mcp.md)). It isn't tied to food: any shop with a
 name on the map is the same call. It replaced the shops pack, which read Checkers' own catalogue, in F50.2
-([ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md)); prices are the `shop-prices` pack's job
+([ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md)); prices are the `shop-prices` pack's job
 ([Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)).
 
 ## How it works
@@ -135,7 +135,7 @@ shape; a live check against the real service is a hand check.
 ## Related docs
 
 [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md) · [Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md) ·
-[Puls.Identity](Puls.Identity.md) · [ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md)
+[Puls.Identity](Puls.Identity.md) · [ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md)
 
 ---
 [Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [Puls.Judges](Puls.Judges.md) · Next: [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)
