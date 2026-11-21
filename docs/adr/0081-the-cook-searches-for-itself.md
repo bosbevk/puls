@@ -44,7 +44,7 @@ still always runs a local model. The `puls-minion-find-recipe` role file stays t
 ## Links
 
 - [ADR 0021: minions, one task, one tool](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0021-minions-one-task-one-tool.md)
-- [ADR 0078: a recipe search asks several sites](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0078-a-recipe-search-asks-several-sites.md)
+- [ADR 0078: a recipe search asks several sites](./0078-a-recipe-search-asks-several-sites.md)
 - [The F35 plan](https://github.com/bosbevk/louis-agent/blob/cc45cd85/docs/plans/F35-recipe-sources.md), now deleted, *Approved during the build*
 - [The write-up](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/05-structured-outputs.md)
 

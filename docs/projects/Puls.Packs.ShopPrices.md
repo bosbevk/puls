@@ -11,7 +11,7 @@
 
 What an agent can do to say roughly what something costs: estimate a shopping list from Stats SA's average prices,
 in the user's province, with the total and the price per person worked out in code. No retailer gave us its prices
-(F50.2, [ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md)), so the prices are public averages, credited
+(F50.2, [ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md)), so the prices are public averages, credited
 and always shown as estimates. It is a pack ([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)) and could be
 served as an MCP server unchanged ([ADR 0028](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0028-packs-stay-convertible-to-mcp.md)). It isn't tied to food:
 another kind of price (rent, fuel) is another price file of the same shape. Where to buy is the `where-to-buy` pack's
@@ -169,7 +169,7 @@ save); fine at a few megabytes ([ADR 0071](https://github.com/bosbevk/louis-agen
 ## Related docs
 
 [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · [Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md) ·
-[Puls.Identity](Puls.Identity.md) · [ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md) ·
+[Puls.Identity](Puls.Identity.md) · [ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md) ·
 [ADR 0070](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0070-packs-publish-data-feeds.md) · [ADR 0071](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0071-packs-take-data-uploads.md)
 
 ---

@@ -15,6 +15,9 @@ it, see how it works, then the decisions and plans behind it.
 - Change it: [Puls](guides/change-puls.md), [its web app](guides/change-the-puls-app.md)
 - How it works: [identity](projects/Puls.Identity.md), [judges](projects/Puls.Judges.md),
   [web app](projects/Puls.Web.md), [host-packs](projects/Puls.HostPacks.md)
-- Decisions: [ADR 0081](adr/0081-the-cook-searches-for-itself.md). ADR numbers are shared with the framework's, so a
-  number is never used twice.
+- Decisions: [ADR 0069](adr/0069-shop-prices-are-stats-sa-estimates.md) (shop prices are Stats SA's estimates),
+  [ADR 0078](adr/0078-a-recipe-search-asks-several-sites.md) (a recipe search asks several sites),
+  [ADR 0081](adr/0081-the-cook-searches-for-itself.md) (the cook searches for itself) and
+  [ADR 0082](adr/0082-the-recipe-library-is-an-open-feed.md) (the recipe library is an open feed). ADR numbers are
+  shared with the framework's, so a number is never used twice.
 - [For site owners](SITE_OWNERS.md), [the cook](specs/PULS_COOK.md), [plans](plans/), [features](features/)
