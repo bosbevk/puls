@@ -1,0 +1,22 @@
+F166.3 move (dry) from origin/main:
+    43  Puls references moved
+     2  files to coming-soon
+    12  files to config
+     3  files to deploy
+     4  files to docker
+   107  files to docs
+     1  files to skills
+   559  files to src
+   222  files to tests
+    49  framework references to packages
+  1315  names rewritten
+   145  paths rewritten
+
+Words left for a person:
+     1  LouisAgent.Cli  docs/projects/Puls.HostPacks.md
+     1  LouisAgent.Cli.md  docs/projects/Puls.HostPacks.md
+     2  LouisAgent.CodeReview  docs/projects/Puls.Web.md
+     1  LouisAgent.CodeReview.md  docs/projects/Puls.Web.md
+     2  LouisAgent.Mcp  config/.env.example
+     2  LouisAgent.UsageProbe  config/.env.anthropic
+     1  demos/ path  docker/docker-compose.puls.yml
