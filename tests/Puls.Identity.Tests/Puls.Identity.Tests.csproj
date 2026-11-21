@@ -1,0 +1,49 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Puls.Identity.Tests</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.4" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.0" />
+    <PackageReference Include="NUnit" Version="4.3.2" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.7.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LouisAgent.Packs.Web" Version="0.1.0" />
+    <ProjectReference Include="..\..\src\Puls.Identity\Puls.Identity.csproj" />
+    <!-- The packs Puls names, so its golden builds the cook with them as the Puls stack does. -->
+    <ProjectReference Include="..\..\src\Puls.Packs.WhereToBuy\Puls.Packs.WhereToBuy.csproj" />
+    <PackageReference Include="LouisAgent.Packs.Calculator" Version="0.1.0" />
+    <ProjectReference Include="..\..\src\Puls.Packs.ShopPrices\Puls.Packs.ShopPrices.csproj" />
+    <!-- The other pack Puls names (F35.2 step 1): the catalogue the tests build holds it. -->
+    <ProjectReference Include="..\..\src\Puls.Packs.Recipes\Puls.Packs.Recipes.csproj" />
+    <!-- The fakes every test project shares (CL15 step 5). -->
+    <PackageReference Include="LouisAgent.Testing" Version="0.2.0" />
+    <!-- The name enums Puls's prompts tests read, kept with its evals (Evals/Checks/Shared/). -->
+    <ProjectReference Include="..\..\src\Puls.Evals\Puls.Evals.csproj" />
+    <!-- The host-packs project says which toolsets Puls has (its identity and the packs it names). -->
+    <ProjectReference Include="..\..\src\Puls.HostPacks\Puls.HostPacks.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="NUnit.Framework" />
+    <Using Include="LouisAgent.Testing" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- This project's design doc and how-to, shown under docs/ in the IDE's solution explorer; nothing is
+         built or copied. -->
+    <None Include="..\..\..\..\src\docs\projects\tests.md" Link="docs\tests.md" />
+    <None Include="..\..\..\..\src\docs\guides\write-tests.md" Link="docs\write-tests.md" />
+  </ItemGroup>
+
+</Project>

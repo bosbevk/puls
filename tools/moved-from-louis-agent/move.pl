@@ -31,7 +31,9 @@ my %published = map { ($_ => '0.1.0') } qw(
     LouisAgent.Web.Accounts LouisAgent.Web.Evals LouisAgent.Diagrams LouisAgent.Diagrams.Engine
     LouisAgent.Packs.Calculator LouisAgent.Packs.DotNet LouisAgent.Packs.Files LouisAgent.Packs.Git
     LouisAgent.Packs.Shell LouisAgent.Packs.Web LouisAgent.Web.Testing);
-$published{'LouisAgent.Testing'} = '0.2.0';
+$published{$_} = '0.2.0'
+    for qw(LouisAgent.Testing LouisAgent.Web LouisAgent.Web.Evals LouisAgent.Evals.Runner LouisAgent.Composition);
+$published{'LouisAgent.Web.Testing'} = '0.3.0';
 
 # The name table.
 my (%new, %side);
@@ -58,8 +60,16 @@ for my $file (grep { /\.csproj\z/ } @files) {
     my ($dir, $name) = $file =~ m{^(.*)/([^/]+)\.csproj\z} or next;
     $projectFolder{$dir} = $name if exists $new{$name};
 }
+# The recipes pack's copies of three framework readers stay behind with their test: Puls reads with the framework's
+# own from LouisAgent.Composition (Louis's pick A of F166.3's finding 10).
+my %leftBehind = map { ($_ => 1) } qw(
+    packs/tools/LouisAgent.Packs.Recipes/Reading/HtmlText.cs packs/tools/LouisAgent.Packs.Recipes/Reading/LeadImage.cs
+    packs/tools/LouisAgent.Packs.Recipes/Reading/JsonLdBlocks.cs
+    demos/puls/tests/LouisAgent.HostPacks.Tests/Copies/PageReaderCopyTests.cs);
+
 sub place {
     my ($file) = @_;
+    return undef if $leftBehind{$file};
     for my $dir (sort { length($b) <=> length($a) } keys %projectFolder) {
         next unless index($file, "$dir/") == 0;
         my $name = $projectFolder{$dir};
@@ -90,10 +100,20 @@ for my $file (@files) {
             $counts{'paths rewritten'} += $text =~ s/\Q$old\E/$renamed/g;
             $counts{'paths rewritten'} += $text =~ s/\Q$back\E/$newBack/g;
         }
+        # An eval project copies its files under its path from the root, which it names by $(MSBuildProjectName).
+        $counts{'paths rewritten'} += $text =~ s{EvalFiles\\demos\\puls\\evals\\}{EvalFiles\\src\\}g;
+        # A path built from its parts, and the one test that found the root by louis-agent's own solution's name.
+        $counts{'paths rewritten'} +=
+            $text =~ s{"demos/puls/evals", "LouisAgent\.Identities\.Puls\.Evals"}{"src", "Puls.Evals"}g;
+        $counts{'paths rewritten'} += $text =~ s{"louis-agent-solution\.sln"}{"Puls.sln"}g;
         $counts{'paths rewritten'} += $text =~ s{demos/puls/web/coming-soon}{coming-soon}g;
         $counts{'paths rewritten'} += $text =~ s{demos/puls/}{}g;
         $counts{'paths rewritten'} += $text =~ s{packs/docs/projects/}{docs/projects/}g;
         $counts{'names rewritten'} += $text =~ s/$whole/$new{$1}/g;
+        # The framework's Sass comes from its packages now, unpacked into the site's obj/framework-sass (F166.3, 3b).
+        $counts{'Sass include paths to the packages'} += $text =~
+            s{"IncludePaths":\s*\[[^\]]*\]}{"IncludePaths": [ "obj/framework-sass" ]}
+            if $to =~ m{/sasscompiler\.json\z};
         if ($to =~ /\.csproj\z/) {
             # A framework project becomes its package; another Puls project is found at its new place.
             $counts{'framework references to packages'} += $text =~

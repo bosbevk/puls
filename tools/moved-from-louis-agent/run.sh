@@ -17,9 +17,12 @@ mode=${3:-dry}
 perl "$here/move.pl" "$from" "$ref" "$mode" | tee "$here/report-$mode.txt"
 [ "$mode" = write ] || exit 0
 
+# The code keeps the style it was written to: louis-agent's .editorconfig, as it was at that commit.
+git -C "$from" show "$ref:.editorconfig" > .editorconfig
+
 dotnet new sln -n Puls --format sln --force > /dev/null
 dotnet sln Puls.sln add $(git ls-files --others --exclude-standard 'src/*.csproj' 'tests/*.csproj') > /dev/null
 dotnet new nugetconfig --force > /dev/null
 dotnet nuget add source https://nuget.pkg.github.com/bosbevk/index.json --name framework --configfile nuget.config \
     --username bosbevk --password '%GITHUB_PACKAGES_TOKEN%' --store-password-in-clear-text > /dev/null
-echo "Puls.sln and nuget.config written."
+echo ".editorconfig, Puls.sln and nuget.config written."

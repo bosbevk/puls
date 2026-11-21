@@ -4,7 +4,7 @@ LouisAgent.Identities.Puls.Evals	Puls.Evals	src
 LouisAgent.Identities.Puls.Judges	Puls.Judges	src
 LouisAgent.HostPacks	Puls.HostPacks	src
 LouisAgent.PulsApi	Puls.Api	src
-LouisAgent.PulsEvalRunner	Puls.EvalRunner	src
+LouisAgent.PulsEvalRunner	Puls.Evals.Runner	src
 LouisAgent.Puls	Puls.Web	src
 LouisAgent.Packs.Recipes	Puls.Packs.Recipes	src
 LouisAgent.Packs.Recipes.Checks	Puls.Packs.Recipes.Checks	src

@@ -1,16 +1,18 @@
-F166.3 move (dry) from origin/main:
+F166.3 move (dry) from puls-moved-out:
     43  Puls references moved
+     1  Sass include paths to the packages
      2  files to coming-soon
     12  files to config
      3  files to deploy
      4  files to docker
    107  files to docs
      1  files to skills
-   559  files to src
-   222  files to tests
+   556  files to src
+   221  files to tests
     49  framework references to packages
-  1315  names rewritten
-   145  paths rewritten
+     4  left in louis-agent
+  1310  names rewritten
+   144  paths rewritten
 
 Words left for a person:
      1  LouisAgent.Cli  docs/projects/Puls.HostPacks.md
