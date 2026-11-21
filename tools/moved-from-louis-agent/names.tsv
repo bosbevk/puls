@@ -1,0 +1,27 @@
+# F166.3: each Puls project in louis-agent, the name it takes here, and where it goes (Louis's picks 3 and 4).
+LouisAgent.Identities.Puls	Puls.Identity	src
+LouisAgent.Identities.Puls.Evals	Puls.Evals	src
+LouisAgent.Identities.Puls.Judges	Puls.Judges	src
+LouisAgent.HostPacks	Puls.HostPacks	src
+LouisAgent.PulsApi	Puls.Api	src
+LouisAgent.PulsEvalRunner	Puls.Evals.Runner	src
+LouisAgent.Puls	Puls.Web	src
+LouisAgent.Packs.Recipes	Puls.Packs.Recipes	src
+LouisAgent.Packs.Recipes.Checks	Puls.Packs.Recipes.Checks	src
+LouisAgent.Packs.Recipes.Web	Puls.Packs.Recipes.Web	src
+LouisAgent.Packs.ShopPrices	Puls.Packs.ShopPrices	src
+LouisAgent.Packs.WhereToBuy	Puls.Packs.WhereToBuy	src
+LouisAgent.Packs.WhereToBuy.Checks	Puls.Packs.WhereToBuy.Checks	src
+LouisAgent.Identities.Puls.Tests	Puls.Identity.Tests	tests
+LouisAgent.Identities.Puls.Evals.Tests	Puls.Evals.Tests	tests
+LouisAgent.Identities.Puls.Judges.Tests	Puls.Judges.Tests	tests
+LouisAgent.HostPacks.Tests	Puls.HostPacks.Tests	tests
+LouisAgent.Puls.Tests	Puls.Web.Tests	tests
+LouisAgent.Packs.Recipes.Tests	Puls.Packs.Recipes.Tests	tests
+LouisAgent.Packs.Recipes.IntegrationTests	Puls.Packs.Recipes.IntegrationTests	tests
+LouisAgent.Packs.Recipes.Checks.Tests	Puls.Packs.Recipes.Checks.Tests	tests
+LouisAgent.Packs.Recipes.Web.Tests	Puls.Packs.Recipes.Web.Tests	tests
+LouisAgent.Packs.ShopPrices.Tests	Puls.Packs.ShopPrices.Tests	tests
+LouisAgent.Packs.ShopPrices.IntegrationTests	Puls.Packs.ShopPrices.IntegrationTests	tests
+LouisAgent.Packs.WhereToBuy.Tests	Puls.Packs.WhereToBuy.Tests	tests
+LouisAgent.Packs.WhereToBuy.Checks.Tests	Puls.Packs.WhereToBuy.Checks.Tests	tests

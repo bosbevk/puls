@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+
+  <!-- Puls: the general assistant's web app (chat only). LouisAgent.Api serves it instead of LouisAgent.CodeReview when built
+       with -p:WebApp=puls (docker/images/Dockerfile.puls). -->
+  <PropertyGroup>
+    <RootNamespace>Puls.Web</RootNamespace>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- A component Razor can't find would be drawn as a plain HTML tag, and the build would still pass. -->
+    <WarningsAsErrors>$(WarningsAsErrors);RZ10012</WarningsAsErrors>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Compiles Styles/ into wwwroot/css/app.css on every build. Build time only: nothing of it reaches the browser. -->
+    <PackageReference Include="AspNetCore.SassCompiler" Version="1.107.1" PrivateAssets="all" ExcludeAssets="runtime;compile" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="10.0.12" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="10.0.12" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LouisAgent.Web" Version="0.2.0" />
+    <!-- CL30: the account pages and their client; a site that has accounts opts in here. -->
+    <PackageReference Include="LouisAgent.Web.Accounts" Version="0.1.0" />
+    <!-- CL57: the eval studio's pages and their client; a site that has the studio opts in here. -->
+    <PackageReference Include="LouisAgent.Web.Evals" Version="0.2.0" />
+    <!-- The recipes pack's own view of its screen. -->
+    <ProjectReference Include="..\..\src\Puls.Packs.Recipes.Web\Puls.Packs.Recipes.Web.csproj" />
+    <PackageReference Include="LouisAgent.Api.Contracts" Version="0.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The Sass compiler's settings are for the build, so they stay out of what's published. -->
+    <Content Update="sasscompiler.json" CopyToOutputDirectory="Never" CopyToPublishDirectory="Never" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- This project's design doc and how-to, shown under docs/ in the IDE's solution explorer; nothing is
+         built or copied. -->
+    <None Include="..\..\docs\projects\Puls.Web.md" Link="docs\Puls.Web.md" />
+    <None Include="..\..\docs\guides\change-the-puls-app.md" Link="docs\change-the-puls-app.md" />
+  </ItemGroup>
+
+</Project>

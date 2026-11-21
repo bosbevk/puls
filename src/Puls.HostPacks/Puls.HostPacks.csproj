@@ -1,0 +1,39 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Picks the identities and packs a host runs (CL15, ADR 0027): a host calls Plugins.FromEnvironment() once at start-up
+       and hands the catalogue to AgentHost. Core and the composition name no identity or pack; this project does, so it
+       is the host's side of the framework and never ships with a pack. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Puls.HostPacks</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Puls.HostPacks.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LouisAgent.Core" Version="0.1.0" />
+    <ProjectReference Include="..\..\src\Puls.Identity\Puls.Identity.csproj" />
+    <PackageReference Include="LouisAgent.Packs.DotNet" Version="0.1.0" />
+    <PackageReference Include="LouisAgent.Packs.Git" Version="0.1.0" />
+    <PackageReference Include="LouisAgent.Packs.Files" Version="0.1.0" />
+    <PackageReference Include="LouisAgent.Packs.Shell" Version="0.1.0" />
+    <PackageReference Include="LouisAgent.Packs.Web" Version="0.1.0" />
+    <ProjectReference Include="..\..\src\Puls.Packs.Recipes\Puls.Packs.Recipes.csproj" />
+    <ProjectReference Include="..\..\src\Puls.Packs.WhereToBuy\Puls.Packs.WhereToBuy.csproj" />
+    <PackageReference Include="LouisAgent.Packs.Calculator" Version="0.1.0" />
+    <ProjectReference Include="..\..\src\Puls.Packs.ShopPrices\Puls.Packs.ShopPrices.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- This project's design doc and how-to, shown under docs/ in the IDE's solution explorer; nothing is
+         built or copied. -->
+    <None Include="..\..\docs\projects\Puls.HostPacks.md" Link="docs\Puls.HostPacks.md" />
+    <None Include="..\..\..\..\src\docs\guides\build-a-pack.md" Link="docs\build-a-pack.md" />
+    <None Include="..\..\..\..\src\docs\guides\build-an-identity.md" Link="docs\build-an-identity.md" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,83 @@
+# Build and test every pull request, so a regression is caught before a review, not only locally. The same shape as
+# louis-agent's CI: build, formatting, unit tests, then the integration tests on a throwaway MongoDB. The framework
+# comes from its packages on GitHub Packages, restored with this workflow's own token (F166.3, Louis's pick A of
+# finding 12), so a green run is also the proof that Puls builds from the published framework alone.
+name: CI
+
+# One run per change: a pull request's every push. A push to a branch alone runs nothing, and a merge to main runs
+# nothing either: the pull request was tested before it could merge.
+on:
+  pull_request:
+
+# The job reads the repository and the framework's packages, and writes nothing.
+permissions:
+  contents: read
+  packages: read
+
+# A newer push to the same pull request cancels its older run.
+concurrency:
+  group: ci-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      mongo:
+        # 7.0, not 8: MongoDB 8.0+ won't start on Linux 6.19 and newer (SERVER-121912), the kernel some runners now have.
+        image: mongo:7.0
+        env:
+          MONGO_INITDB_ROOT_USERNAME: ci
+          MONGO_INITDB_ROOT_PASSWORD: ci
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --quiet --eval 'db.runCommand({ping:1}).ok'"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      # nuget.config signs in to the framework's feed with this; the workflow's own token can read the packages.
+      GITHUB_PACKAGES_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # The recipe and price stores' contract tests; a throwaway server with a throwaway user, so no secret.
+      BENCHMARKS_MONGO_URL: mongodb://ci:ci@localhost:27017/?authSource=admin
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          # The formatting check compares a pull request with its base, so it needs the history.
+          fetch-depth: 0
+
+      - uses: actions/setup-dotnet@v6
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Build
+        run: dotnet build Puls.sln
+
+      - name: Formatting
+        # The .editorconfig's rules, checked only on the C# files the change's commits touched (merges left out); a file
+        # only moved (a rename with no change, R100) counts as untouched.
+        env:
+          BEFORE: ${{ github.event.pull_request.base.sha }}
+        run: |
+          if ! git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then echo "No earlier commit to compare with; skipped."; exit 0; fi
+          files=$(git log --no-merges -M --name-status --format= --diff-filter=AMR "$BEFORE..HEAD" -- '*.cs' | awk '$1 != "R100" {print $NF}' | sort -u)
+          if [ -z "$files" ]; then echo "No C# files changed."; exit 0; fi
+          dotnet format Puls.sln --verify-no-changes --no-restore --include $files
+
+      - name: Unit tests
+        # Every integration test carries the Integration mark and lives in an .IntegrationTests project.
+        run: dotnet test Puls.sln --no-build --filter "Category!=Integration" --logger trx --results-directory "$RUNNER_TEMP/TestResults/unit"
+
+      - name: Integration tests
+        # The tests against MongoDB. A tool this image has that a test cannot find fails the test here, not skips it.
+        env:
+          INTEGRATION_REQUIRED: 1
+        run: dotnet test Puls.sln --no-build --filter "Category=Integration" --logger trx --results-directory "$RUNNER_TEMP/TestResults/integration"
+
+      - name: Keep the test results
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: test-results
+          path: ${{ runner.temp }}/TestResults
