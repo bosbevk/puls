@@ -17,7 +17,8 @@ from GitHub Packages. It holds no copy of the framework's code. Everything here 
 The code is in `src/`, one folder per project, each named for its namespace, such as `Puls.Identity` and
 `Puls.Packs.Recipes`. Each project's tests sit in `tests/` under the same name with `.Tests` on the end, and the ones
 that need a real MongoDB end in `.IntegrationTests`. `Puls.sln` holds them all. The docs are in [docs/](docs/README.md):
-setting Puls up, changing it, how each part works, and the decisions only Puls needs. Everything about the framework
+setting Puls up, changing it, how each part works, and the decisions only Puls needs. What Puls still has to do is in
+the [TODO](TODO.md). Everything about the framework
 itself is in the [framework's docs](https://github.com/bosbevk/louis-agent/blob/main/src/docs/README.md).
 
 ## Building it
