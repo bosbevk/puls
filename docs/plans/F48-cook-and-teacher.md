@@ -424,4 +424,4 @@ specialists want first anyway.
   `plans/F35-recipe-sources.md` in the Claude project, `plans/puls-ten-specialists-brainstorm.md` in the Claude project
 
 ---
-[Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md) · Related: [Plans](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/plans/README.md) · [Puls cook, next](../specs/PULS_COOK.md) · [TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md)
+[Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md) · Related: [Plans](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/plans/README.md) · [Puls cook, next](../specs/PULS_COOK.md) · [TODO](../../TODO.md)

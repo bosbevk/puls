@@ -181,8 +181,8 @@ have their older, hand-cut references. The cook reads its recipes with the `reci
 for a dish no site has (F35, [write-up](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/05-structured-outputs.md)). The last full
 recipes run, `79ea99b3ec08`, had 30 of 30 from a page it read and 27 of 30 by the judge, in 52 s at $0.0059 an answer.
 The fixes after it are unmeasured: the next paid run is the first on them. CL16 moves the cook into a `cooking` pack;
-the area guide moves here with the Places pack ([TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md), *Puls*). Louis's corrections to the
-Afrikaans, and the eleven official languages, measured → [TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md).
+the area guide moves here with the Places pack ([TODO](../../TODO.md), *Puls*). Louis's corrections to the
+Afrikaans, and the eleven official languages, measured → [TODO](../../TODO.md).
 
 ## Related docs
 

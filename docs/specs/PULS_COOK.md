@@ -226,4 +226,4 @@ Louis's go, as always.
 - Stats SA, P0141 *CPI Average Prices*, August 2026 (`data/statssa-average-prices/` in the Claude project)
 
 ---
-[Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md) · Related: [F48 plan](../plans/F48-cook-and-teacher.md) · [TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md)
+[Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md) · Related: [F48 plan](../plans/F48-cook-and-teacher.md) · [TODO](../../TODO.md)

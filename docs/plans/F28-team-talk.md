@@ -74,4 +74,4 @@ One commit each, with its tests; the review stop after each.
 (none yet)
 
 ---
-[Plans](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/plans/README.md) · Related: [F28 Team talk](../features/F28-team-talk.md) · [TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md)
+[Plans](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/plans/README.md) · Related: [F28 Team talk](../features/F28-team-talk.md) · [TODO](../../TODO.md)

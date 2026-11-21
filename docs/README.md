@@ -20,4 +20,5 @@ it, see how it works, then the decisions and plans behind it.
   [ADR 0081](adr/0081-the-cook-searches-for-itself.md) (the cook searches for itself) and
   [ADR 0082](adr/0082-the-recipe-library-is-an-open-feed.md) (the recipe library is an open feed). ADR numbers are
   shared with the framework's, so a number is never used twice.
-- [For site owners](SITE_OWNERS.md), [the cook](specs/PULS_COOK.md), [plans](plans/), [features](features/)
+- [For site owners](SITE_OWNERS.md), [the cook](specs/PULS_COOK.md), [plans](plans/), [features](features/), and
+  what's still to do in the [TODO](../TODO.md)
