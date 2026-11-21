@@ -2,7 +2,7 @@
 
 > **Reference.** If `Puls/1.0 (+this page)` appears in your server's logs, this says what it is, what it reads, how
 > often, and how to ask us to stop or to talk. **Elsewhere:** the decision behind it in
-> [ADR 0038](../../../src/docs/adr/0038-the-browser-says-what-it-is.md); the project in the [README](../../../README.md).
+> [ADR 0038](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0038-the-browser-says-what-it-is.md); the project in the [README](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/README.md).
 
 ![For site owners: who Puls is, what it sends, what it reads and keeps, and how to ask it to stop](diagrams/SITE_OWNERS.svg)
 
@@ -21,7 +21,7 @@ page from one of the sites in its table is kept and published, as below.
 Every request from its browser carries the user agent
 `Puls/1.0 (+https://github.com/bosbevk/louis-agent/blob/main/docs/SITE_OWNERS.md; reads a page on a user's behalf)`,
 so you can tell it apart from a person's browser, allow it, or block it. It does not pretend to be a desktop browser
-and does not hide that it is automated ([ADR 0038](../../../src/docs/adr/0038-the-browser-says-what-it-is.md)). It never sends the
+and does not hide that it is automated ([ADR 0038](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0038-the-browser-says-what-it-is.md)). It never sends the
 person's name, address or anything else about them.
 
 ## What it reads, and how much
@@ -34,7 +34,7 @@ Woolworths and Checkers on 2026-10-25). It reads only pages a site serves to eve
 accept terms on a person's behalf, and does not make WebSocket connections. Images are shown to the person from your
 own image host, as your page serves them.
 
-**It obeys your `robots.txt`, on every request** ([ADR 0068](../../../src/docs/adr/0068-every-fetch-obeys-robots-txt.md)).
+**It obeys your `robots.txt`, on every request** ([ADR 0068](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0068-every-fetch-obeys-robots-txt.md)).
 The check is in code, at the one place every page passes, so no prompt can forget it. If your file has a group for
 `louis-agent`, that group binds it. Otherwise it obeys the `*` group and the groups of the AI readers your file names
 (GPTBot, ClaudeBot, CCBot, Google-Extended and the others in that ADR), all together, the strictest of them. So a site
@@ -69,4 +69,4 @@ deleted. Today that is a change to the code, shipped in the next release. A list
 reads at run time is planned (F77 in the TODO, *A domain stop-list for the browser*).
 
 ---
-[Docs index](README.md) · Related: [ADR 0038](../../../src/docs/adr/0038-the-browser-says-what-it-is.md) · [ADR 0068](../../../src/docs/adr/0068-every-fetch-obeys-robots-txt.md)
+[Docs index](README.md) · Related: [ADR 0038](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0038-the-browser-says-what-it-is.md) · [ADR 0068](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0068-every-fetch-obeys-robots-txt.md)

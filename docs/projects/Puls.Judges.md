@@ -12,7 +12,7 @@
 Puls's model judge: the cook's `meal-for-people`, which asks a model whether an answer is a meal for the people asked
 for. It sits beside the identity it judges, but in its own project, because a judge is built on the harness's judge
 (`EvaluatorCheck`, `JudgeClients`) and the identity must never reference the harness
-([ADR 0027](../../../../src/docs/adr/0027-engine-identities-and-packs.md)). Only the runner references it; the composition never does,
+([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)). Only the runner references it; the composition never does,
 so no host (the API, the CLI, the ACP and MCP servers) carries the harness.
 
 ## How it works
@@ -45,8 +45,8 @@ evals' tests' helpers, since no test project references another.
 
 ## Related docs
 
-[Puls.Identity](Puls.Identity.md) · [LouisAgent.Evals](../../../../src/docs/projects/LouisAgent.Evals.md) ·
-[LouisAgent.Evals.Runner](../../../../src/docs/projects/LouisAgent.Evals.Runner.md) · [Run the evals](../../../../src/docs/guides/run-the-evals.md)
+[Puls.Identity](Puls.Identity.md) · [LouisAgent.Evals](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Evals.md) ·
+[LouisAgent.Evals.Runner](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Evals.Runner.md) · [Run the evals](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/run-the-evals.md)
 
 ---
-[Projects](../../../../src/docs/projects/README.md) · Previous: [Puls.Identity](Puls.Identity.md) · Next: [Puls.Packs.WhereToBuy](../../../../docs/projects/Puls.Packs.WhereToBuy.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [Puls.Identity](Puls.Identity.md) · Next: [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md)

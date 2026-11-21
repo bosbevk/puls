@@ -1,13 +1,17 @@
+# syntax=docker/dockerfile:1
 # Puls: LouisAgent.Api serving the Puls web app (the general assistant) instead of the code-review app (-p:WebApp=puls).
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 # The commit the runner stamps on every run's first line (F18 step 2a): the compose file passes EVAL_COMMIT; "unknown" when it is not set.
 ARG EVAL_COMMIT=unknown
 WORKDIR /src
 COPY . .
-RUN dotnet publish "src/Puls.Api/Puls.Api.csproj" -c Release -o /app/publish
+# The framework's packages come from GitHub Packages: nuget.config signs in with GITHUB_PACKAGES_TOKEN, which the build
+# hands in as a secret for this one step, so no layer keeps it. The publishes below restore nothing more.
+RUN --mount=type=secret,id=github_packages_token,env=GITHUB_PACKAGES_TOKEN dotnet restore Puls.sln
+RUN dotnet publish "src/Puls.Api/Puls.Api.csproj" -c Release --no-restore -o /app/publish
 # The eval runner (F18 step 4.3) publishes to its own folder: it ships its own copies of core and the session-stream reader,
 # and beside the API's they would overwrite each other.
-RUN dotnet publish "src/Puls.Evals.Runner/Puls.Evals.Runner.csproj" -c Release -p:EvalCommit=$EVAL_COMMIT -o /app/evals-publish
+RUN dotnet publish "src/Puls.Evals.Runner/Puls.Evals.Runner.csproj" -c Release --no-restore -p:EvalCommit=$EVAL_COMMIT -o /app/evals-publish
 
 # The SDK image is kept for the final stage because the RunDotNet workspace tool shells out to `dotnet build/test`.
 FROM mcr.microsoft.com/dotnet/sdk:10.0

@@ -29,7 +29,7 @@ Azure app set no `MINION_LLMS`.
 **A minion stays only if it beats no minion on the test above.** Run both on one commit and compare them. A cheaper model
 doesn't count as a saving until the whole answer costs less.
 
-The minions feature stays in the engine ([ADR 0021](../../../../src/docs/adr/0021-minions-one-task-one-tool.md)), and a minion
+The minions feature stays in the engine ([ADR 0021](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0021-minions-one-task-one-tool.md)), and a minion
 still always runs a local model. The `puls-minion-find-recipe` role file stays too, doing nothing unless an instance sets
 `MINION_LLMS` and a role asks for it, as `puls-minion-web-price-lookup` already does.
 
@@ -43,10 +43,10 @@ still always runs a local model. The `puls-minion-find-recipe` role file stays t
 
 ## Links
 
-- [ADR 0021: minions, one task, one tool](../../../../src/docs/adr/0021-minions-one-task-one-tool.md)
-- [ADR 0078: a recipe search asks several sites](../../../../packs/docs/adr/0078-a-recipe-search-asks-several-sites.md)
+- [ADR 0021: minions, one task, one tool](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0021-minions-one-task-one-tool.md)
+- [ADR 0078: a recipe search asks several sites](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0078-a-recipe-search-asks-several-sites.md)
 - [The F35 plan](https://github.com/bosbevk/louis-agent/blob/cc45cd85/docs/plans/F35-recipe-sources.md), now deleted, *Approved during the build*
-- [The write-up](../../../../src/docs/learning/05-structured-outputs.md)
+- [The write-up](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/05-structured-outputs.md)
 
 ---
-[Docs index](../../../../src/docs/README.md) · Related: [ADR index](../../../../src/docs/adr/README.md)
+[Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md) · Related: [ADR index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/README.md)

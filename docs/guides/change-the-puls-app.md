@@ -3,8 +3,8 @@
 > **How-to.** Change `src/Puls.Web`, the general assistant's web app: run it, change the chat, the landing page
 > or the admin portal, add a starter, place its words, and test it. **Elsewhere:** how it works in
 > [Puls.Web](../projects/Puls.Web.md); what it shares with the code-review app in
-> [Change the framework's web](../../../../src/docs/guides/change-the-web.md); Puls's voice, roles and packs in
-> [Change Puls](change-puls.md), and identities in general in [Build an identity](../../../../src/docs/guides/build-an-identity.md).
+> [Change the framework's web](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/change-the-web.md); Puls's voice, roles and packs in
+> [Change Puls](change-puls.md), and identities in general in [Build an identity](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-an-identity.md).
 
 ![Change the Puls web app: run it, change the chat, add a starter, change the landing page or the admin portal, place its words, and test it](../diagrams/change-the-puls-app.svg)
 
@@ -38,16 +38,16 @@ shows and which toolsets a session asks for.
 
 A change to the frame itself (the sidebar, the top bar, the message box, the work panel, renaming, search) goes in
 `LouisAgent.Web`, since every site gets it
-([Change the framework's web](../../../../src/docs/guides/change-the-web.md)). Only what's Puls's own is a component
+([Change the framework's web](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/change-the-web.md)). Only what's Puls's own is a component
 under `Components/Chat/`, with its C# in its `.razor.cs`
-([hosts-and-web.md](../../../../.claude/rules/hosts-and-web.md)). Logic that needs no component goes in a plain class
+([hosts-and-web.md](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/.claude/rules/hosts-and-web.md)). Logic that needs no component goes in a plain class
 with its test.
 
 A new chat opens its session with the `agents` and `web` toolsets, where the instance has them: Puls answers the web
 itself and asks the cook about cooking. An API with no `agents` toolset gets every toolset it has instead. The
 session also carries the role `puls/voice-af` (or the chosen language's voice), the user's time zone, and their place
 when they've set one. A new session option starts in the API
-([Change the API](../../../../src/docs/guides/change-the-api.md#add-a-session-option)), then goes into
+([Change the API](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/change-the-api.md#add-a-session-option)), then goes into
 `AgentApi.CreateSessionAsync` in the shared library.
 
 Some links still show a "kom binnekort" (coming soon) toast. To make one real, replace its toast with the feature and
@@ -70,7 +70,7 @@ for less motion gets none.
 
 ## Change the admin portal
 
-The admin pages are the framework's ([Change the eval pages](../../../../src/docs/guides/change-the-eval-pages.md)).
+The admin pages are the framework's ([Change the eval pages](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/change-the-eval-pages.md)).
 Two things are Puls's own. `Layout/AdminLayout.razor` fills the framework's frame with Puls's logo, its way back, its
 live strip and its links. `Content/PulsSites.cs` says which websites the sources chart sorts, so a new shop's address
 goes there.
@@ -79,7 +79,7 @@ goes there.
 
 Puls speaks Afrikaans. The shared components' words are `Text/PulsText.cs` (`PulsText.Afrikaans`, a `ChatText`). A
 label in a `.razor` is markup and stays there. A text built in C# goes in `PulsText`, never inline
-([ADR 0009](../../../../src/docs/adr/0009-message-text-as-enum-templates.md)). A word the framework's frame shows is a
+([ADR 0009](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0009-message-text-as-enum-templates.md)). A word the framework's frame shows is a
 property of `ChatText` in English, and its Afrikaans goes in `PulsText`.
 
 ## Test it
@@ -107,4 +107,4 @@ panel slides in instead of standing as a column, and below 992 px the sidebar do
 - [ ] New motion is behind the motion switch, and the golden files' diff is the change you meant.
 
 ---
-[Guides](../../../../src/docs/guides/README.md) · [Docs index](../../../../src/docs/README.md)
+[Guides](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/README.md) · [Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md)

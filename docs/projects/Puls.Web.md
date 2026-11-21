@@ -25,7 +25,7 @@ The landing page lists its sections in order, each a component of its own.
 
 `/` is the landing page (`LandingPage.razor`). The app is one small page, `ChatPage.razor`, at `/gesels`,
 `/gesels/{id}` (old `/chat/{id}` links move there), `/verken` and `/studio`. It fills the framework's `ChatShell` with
-what's Puls's own (see [LouisAgent.Web](../../../../src/docs/projects/LouisAgent.Web.md)), and redraws on every
+what's Puls's own (see [LouisAgent.Web](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Web.md)), and redraws on every
 address change, since Blazor wouldn't for the same page with the same parameters.
 
 A chat opens `POST /v1/sessions` with `toolsets: ["specialists", "web"]` where the instance has them (F29),
@@ -43,7 +43,7 @@ slides in; below 992px the sidebar does.
 ### 3. The admin portal (English, the builders' screen)
 
 *Admin* in the profile menu opens `/admin`. The pages are the framework's
-([The eval pages](../../../../src/docs/projects/LouisAgent.Web.Evals.md)); Puls fills their frame in `AdminLayout`
+([The eval pages](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Web.Evals.md)); Puls fills their frame in `AdminLayout`
 with its logo, the live strip and the eval links, and says in `PulsSites` which websites matter to it: South African
 shops, other South African sites and the map.
 
@@ -75,7 +75,7 @@ are hidden, and whether the animations are on although the system asks for less 
 | `Text/PulsWebRole.cs` | The roles the web app has words for (the cook's work phases), as an enum of its own (ADR 0043) |
 | `Text/PulsText.cs` | The shared components' words in Afrikaans (`ChatText`) |
 | `Content/` | `Template` and `Templates` (the starters on Verken and Studio), `PulsSites` (the kinds of website the eval pages' sources chart sorts by) |
-| `Styles/` | Puls's look, in Sass ([ADR 0085](../../../../src/docs/adr/0085-styles-are-written-in-sass.md)): `app.scss` lists the framework's partials under `web/` and Puls's own in cascade order. Puls's own are its colours (`settings/_tokens.scss`: orange, green, charcoal, a charcoal-tinted white; Montserrat), the landing, and what's only its own in `layout/` and `chat/`: the logo, the water, the empty chat, Verken and Studio. The build makes `wwwroot/css/app.css`, which isn't in git |
+| `Styles/` | Puls's look, in Sass ([ADR 0085](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0085-styles-are-written-in-sass.md)): `app.scss` lists the framework's partials under `web/` and Puls's own in cascade order. Puls's own are its colours (`settings/_tokens.scss`: orange, green, charcoal, a charcoal-tinted white; Montserrat), the landing, and what's only its own in `layout/` and `chat/`: the logo, the water, the empty chat, Verken and Studio. The build makes `wwwroot/css/app.css`, which isn't in git |
 | `wwwroot/js/landing.js` | The landing page's motion (F24): progress line, section index, centred links, reveals, counters, the pinned tour, the demo, the accordion; started and stopped by `LandingPage.razor` |
 | `wwwroot/index.html` | The start screen with Blazor's real loading count; the saved layout and the motion choice applied before the first paint |
 | `wwwroot/brand/` | The logo set: mark, logo, stacked, icon tiles, colour versions |
@@ -137,7 +137,7 @@ pinned by digest.
 The steps are in [Change the Puls web app](../guides/change-the-puls-app.md). In short: a starter is a line in
 `Content/Templates.cs`; a chat piece every site would share goes in `LouisAgent.Web`, and only what's Puls's own goes under
 `Components/Chat/`; a placeholder made real replaces its "kom binnekort" toast and keeps the label. Puls's voice and roles are the Puls identity's prompts
-([Build an identity](../../../../src/docs/guides/build-an-identity.md)); built in, so a change is a rebuild.
+([Build an identity](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-an-identity.md)); built in, so a change is a rebuild.
 
 ## Tests
 
@@ -153,8 +153,8 @@ Buying credits (F23 Credits), a light theme, accounts, and the placeholders abov
 
 ## Related docs
 
-[Puls.Identity](Puls.Identity.md) (who Puls is) · [LouisAgent.CodeReview](../../../louis-agent/docs/projects/LouisAgent.CodeReview.md) ·
-[api](../../../../src/docs/projects/LouisAgent.Api.md) · [evals](../../../../src/docs/projects/LouisAgent.Evals.md) · [Multi-agent write-up](../../../../src/docs/learning/10-multi-agent-orchestration.md)
+[Puls.Identity](Puls.Identity.md) (who Puls is) · [LouisAgent.CodeReview](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/demos/louis-agent/docs/projects/LouisAgent.CodeReview.md) ·
+[api](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Api.md) · [evals](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Evals.md) · [Multi-agent write-up](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/10-multi-agent-orchestration.md)
 
 ---
-[Projects](../../../../src/docs/projects/README.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md)

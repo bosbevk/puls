@@ -4,7 +4,7 @@
 > LouisAgent.Core, Microsoft.Extensions.FileProviders.Embedded · **Loaded by:** `IDENTITIES=puls` (the Puls compose
 > sets it) · **Names:** the `where-to-buy`, `shop-prices`, `recipes`, `web` and `calculator` packs · **Its evals:**
 > `src/Puls.Evals/` (`Evals/` below; references the check contract; only the runner
-> references it, [ADR 0073](../../../../src/docs/adr/0073-packs-reference-no-evals.md))
+> references it, [ADR 0073](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0073-packs-reference-no-evals.md))
 > **Also shows:** `component`, `sequence`
 
 ![Puls: its voice, its specialists and the packs it names](diagrams/Puls.Identity.svg)
@@ -13,7 +13,7 @@
 
 Who Puls is: the South African general assistant's voice in Afrikaans and English, its routing, its specialists and its
 minion, and the packs it uses. It holds no tools and no settings: what Puls can do comes from core's toolsets and from
-the packs it names ([ADR 0027](../../../../src/docs/adr/0027-engine-identities-and-packs.md)). Puls's web app, what the user sees, is a
+the packs it names ([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)). Puls's web app, what the user sees, is a
 separate project ([Puls.Web](Puls.Web.md)).
 
 ## How it works
@@ -39,16 +39,16 @@ the same instance (`AGENT_PEERS: puls=http://puls:8080`). The addresses it may a
 cook, the researcher, the analyst, the historian and the reader, and the two minions its specialists may start by
 address, `puls.find-recipe` and `puls.web-price-lookup`, F127.5), and it sets `RelaysAnswersWhole`, so the cook's
 answer is shown as it is and Puls's turn ends there
-([ADR 0079](../../../../src/docs/adr/0079-show-a-specialists-report.md)).
+([ADR 0079](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0079-show-a-specialists-report.md)).
 
 ### 4. The cook
 
 `specialists/puls-cook.md` opens with the header every prompt has
-([ADR 0063](../../../../src/docs/adr/0063-a-prompt-says-what-it-is.md)): its name, description and level, and its
+([ADR 0063](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0063-a-prompt-says-what-it-is.md)): its name, description and level, and its
 toolsets, `web`, `recipes`, `where-to-buy`, `shop-prices` and `calculator`, required (no `?`): a cook that can't read
 the web or recipes, find a shop, estimate a list or do its sums is refused, not left without them. Its own file names
 `web` since F127.3.1, since an ask sends no toolsets. A role that needs a toolset always lists it under
-`metadata.toolsets` ([ADR 0025](../../../../src/docs/adr/0025-a-role-declares-its-toolsets.md)).
+`metadata.toolsets` ([ADR 0025](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0025-a-role-declares-its-toolsets.md)).
 
 ### 5. Only checked roles are on
 
@@ -78,7 +78,7 @@ left. Its readers implement the check contract only; the cook's model judge need
 ## Design notes
 
 What building Puls's specialists settled (F21, F22, F25, F26, F29, F30); the measured story is
-[write-up 10](../../../../src/docs/learning/10-multi-agent-orchestration.md):
+[write-up 10](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/10-multi-agent-orchestration.md):
 
 A specialist is a role, one per kind of work, and a sub-session gets no router: only its role and its toolsets'
 guides, about 1,900 tokens of prefix against Puls's 2,200. A role Puls names is refused before an engine is built when
@@ -90,7 +90,7 @@ The prompts and the gate say the same: the routing keeps the cook, makes the web
 relay rule, an eval).
 
 Puls shows the cook's report; it doesn't retype it
-([ADR 0079](../../../../src/docs/adr/0079-show-a-specialists-report.md)): the turn ends on the report, and Puls's one
+([ADR 0079](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0079-show-a-specialists-report.md)): the turn ends on the report, and Puls's one
 line of its own comes before the call.
 
 Cooking is never answered from memory (Louis, 2026-10-15, after Puls answered "ek wil bobotie maak" itself): every
@@ -144,14 +144,14 @@ searches.
 
 None of its own. A Puls stack (`docker/docker-compose.puls.yml`) sets `IDENTITIES=puls`, `ROLES_ENABLED`,
 `AGENT_PEERS` (itself), `HOST_TIME_ZONE=Africa/Johannesburg` and `BROWSER_USER_AGENT` (who reads and why,
-[ADR 0038](../../../../src/docs/adr/0038-the-browser-says-what-it-is.md)), plus the shop prices' store
-(`SHOP_PRICES_MONGO_URL`, [Puls.Packs.ShopPrices](../../../../docs/projects/Puls.Packs.ShopPrices.md)), and the recipes pack's `RECIPE_SOURCES=*`, every site in the table
-([Puls.Packs.Recipes](../../../../docs/projects/Puls.Packs.Recipes.md)). Every setting is in [Setup](../../../../src/docs/SETUP.md).
+[ADR 0038](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0038-the-browser-says-what-it-is.md)), plus the shop prices' store
+(`SHOP_PRICES_MONGO_URL`, [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)), and the recipes pack's `RECIPE_SOURCES=*`, every site in the table
+([Puls.Packs.Recipes](Puls.Packs.Recipes.md)). Every setting is in [Setup](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/SETUP.md).
 
 ## Extending it
 
 The steps are in [Change Puls](../guides/change-puls.md); a new identity from scratch, with Puls as the worked
-example, is [Build an identity](../../../../src/docs/guides/build-an-identity.md). In short: a
+example, is [Build an identity](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-an-identity.md). In short: a
 language is a `voice-{xx}.md` with the same sections as `voice-af.md`; a specialist is `specialists/puls-{name}.md`, a
 row in the routing, and a place in `ROLES_ENABLED` once its eval passes. A changed word in any prompt changes the
 session golden: regenerate it and read the diff.
@@ -176,18 +176,18 @@ identity doesn't.
 Only the cook has passed its check; each other specialist is turned on after its own eval. The first v2 baseline
 (2026-10-29): `puls-cook` 23 of 24 in its cook mode, 6 of 24 when Puls answers itself; `puls-routing` 72 of 72; the
 local judge agrees 31 of 36 with a blind labeller, below the 90% bar
-([LouisAgent.Evals](../../../../src/docs/projects/LouisAgent.Evals.md#limits-and-plans)). The held-out scenarios still
+([LouisAgent.Evals](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Evals.md#limits-and-plans)). The held-out scenarios still
 have their older, hand-cut references. The cook reads its recipes with the `recipes` pack, and goes to the web only
-for a dish no site has (F35, [write-up](../../../../src/docs/learning/05-structured-outputs.md)). The last full
+for a dish no site has (F35, [write-up](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/05-structured-outputs.md)). The last full
 recipes run, `79ea99b3ec08`, had 30 of 30 from a page it read and 27 of 30 by the judge, in 52 s at $0.0059 an answer.
 The fixes after it are unmeasured: the next paid run is the first on them. CL16 moves the cook into a `cooking` pack;
-the area guide moves here with the Places pack ([TODO](../../../../TODO.md), *Puls*). Louis's corrections to the
-Afrikaans, and the eleven official languages, measured → [TODO](../../../../TODO.md).
+the area guide moves here with the Places pack ([TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md), *Puls*). Louis's corrections to the
+Afrikaans, and the eleven official languages, measured → [TODO](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md).
 
 ## Related docs
 
-[Build an identity](../../../../src/docs/guides/build-an-identity.md) · [Puls.Web](Puls.Web.md) (the web app) ·
-[Puls.Packs.WhereToBuy](../../../../docs/projects/Puls.Packs.WhereToBuy.md) · [Puls.Packs.ShopPrices](../../../../docs/projects/Puls.Packs.ShopPrices.md) · [ADR 0019 modes](../../../../src/docs/adr/0019-modes-one-file-per-product.md)
+[Build an identity](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-an-identity.md) · [Puls.Web](Puls.Web.md) (the web app) ·
+[Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md) · [ADR 0019 modes](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0019-modes-one-file-per-product.md)
 
 ---
-[Projects](../../../../src/docs/projects/README.md) · Previous: [LouisAgent.Core](../../../../src/docs/projects/LouisAgent.Core.md) · Next: [Puls.Judges](Puls.Judges.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [LouisAgent.Core](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Core.md) · Next: [Puls.Judges](Puls.Judges.md)

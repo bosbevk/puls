@@ -11,9 +11,9 @@
 
 What an agent can do to say roughly what something costs: estimate a shopping list from Stats SA's average prices,
 in the user's province, with the total and the price per person worked out in code. No retailer gave us its prices
-(F50.2, [ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md)), so the prices are public averages, credited
-and always shown as estimates. It is a pack ([ADR 0027](../../../src/docs/adr/0027-engine-identities-and-packs.md)) and could be
-served as an MCP server unchanged ([ADR 0028](../../../src/docs/adr/0028-packs-stay-convertible-to-mcp.md)). It isn't tied to food:
+(F50.2, [ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md)), so the prices are public averages, credited
+and always shown as estimates. It is a pack ([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)) and could be
+served as an MCP server unchanged ([ADR 0028](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0028-packs-stay-convertible-to-mcp.md)). It isn't tied to food:
 another kind of price (rent, fuel) is another price file of the same shape. Where to buy is the `where-to-buy` pack's
 job ([Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md)).
 
@@ -62,11 +62,11 @@ shipped tables when the store fails or is empty, with a log line (`ShopPriceLogM
 ### 6. The feed
 
 The pack publishes the same tables as one feed, `shop-prices` (`ShopPricesFeed`,
-[ADR 0070](../../../src/docs/adr/0070-packs-publish-data-feeds.md)), which the API serves open at
+[ADR 0070](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0070-packs-publish-data-feeds.md)), which the API serves open at
 `GET /v1/feeds/shop-prices`: `{"notice": …, "tables": [ … ]}`, each table in the shipped JSON's shape, read through
 the tool's cache. The notice (`ShopPriceFeedMessage`) says the prices are averages and whose they are.
 
-The upload (F55, [ADR 0071](../../../src/docs/adr/0071-packs-take-data-uploads.md)). The pack declares one upload,
+The upload (F55, [ADR 0071](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0071-packs-take-data-uploads.md)). The pack declares one upload,
 `shop-prices` (`StatsSaImport`), which the admin portal shows at `/admin/imports`: Stats SA's two P0141 spreadsheets,
 all urban areas and provinces. `StatsSaSheets` reads them by column name (`H03` the code, `H04` the product, `H08` the
 size, `H09` the province, `M201701`… a column per month); `PackSize` and `StatsSaProduct` tidy sizes and names;
@@ -98,7 +98,7 @@ and the month.
 
 Unknown is `?`. A line with no price stays out of the total and is listed, and the total and the price per person say
 so in the cell the agent copies (`± R312 + 2 items unpriced`), so the total never looks complete when it isn't
-([ADR 0007](../../../src/docs/adr/0007-measure-every-request.md)'s rule).
+([ADR 0007](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0007-measure-every-request.md)'s rule).
 
 The store is the record, the files only seed it. A month corrected in the store stays corrected after a restart; a
 newly shipped month joins the history.
@@ -164,13 +164,13 @@ feed over HTTP, and `ImportRouteTests` list, preview and save the upload.
 
 The averages are over many shops and a whole province: a shop's real price can differ a lot, and the answer says so.
 Stats SA prices 220 products in set packs; the rest is our own rows or `?`. An upload travels twice (preview, then
-save); fine at a few megabytes ([ADR 0071](../../../src/docs/adr/0071-packs-take-data-uploads.md)).
+save); fine at a few megabytes ([ADR 0071](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0071-packs-take-data-uploads.md)).
 
 ## Related docs
 
-[Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · [Build a pack](../../../src/docs/guides/build-a-pack.md) ·
-[Puls.Identity](../../../docs/projects/Puls.Identity.md) · [ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md) ·
-[ADR 0070](../../../src/docs/adr/0070-packs-publish-data-feeds.md) · [ADR 0071](../../../src/docs/adr/0071-packs-take-data-uploads.md)
+[Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · [Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md) ·
+[Puls.Identity](Puls.Identity.md) · [ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md) ·
+[ADR 0070](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0070-packs-publish-data-feeds.md) · [ADR 0071](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0071-packs-take-data-uploads.md)
 
 ---
-[Projects](../../../src/docs/projects/README.md) · Previous: [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · Next: [Puls.Packs.Recipes](Puls.Packs.Recipes.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · Next: [Puls.Packs.Recipes](Puls.Packs.Recipes.md)

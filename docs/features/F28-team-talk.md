@@ -7,7 +7,7 @@
 > the card as a thread, and the checks. **Depends on:** F5 (asking another agent), F21 (roles), F25 (the cook), F26
 > (follow-ups), F27 (the checks the portal runs).
 >
-> **Plan:** [plans/F28](../plans/F28-team-talk.md). **In the TODO:** [F28](../../../../TODO.md).
+> **Plan:** [plans/F28](../plans/F28-team-talk.md). **In the TODO:** [F28](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/TODO.md).
 
 ![F28 team talk: the note Puls writes, the mood switch, the card as a thread, and the checks that score the note](../diagrams/F28-team-talk.svg)
 
@@ -99,4 +99,4 @@ F28-S3: the checks score `briefed` and record the mood, and the saved samples ar
 false).
 
 ---
-[Features](../../../../src/docs/features/README.md) · [Plan](../plans/F28-team-talk.md)
+[Features](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/features/README.md) · [Plan](../plans/F28-team-talk.md)

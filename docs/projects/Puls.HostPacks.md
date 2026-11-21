@@ -10,7 +10,7 @@
 ## Purpose
 
 Puls's side of the composition: the one project that knows every identity and pack Puls's programs can load, so that nothing else has to
-([ADR 0027](../../../../src/docs/adr/0027-engine-identities-and-packs.md)). Core stays the engine and names no product; a host stays
+([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)). Core stays the engine and names no product; a host stays
 thin and never references an identity or a pack; and which agent a host runs is a setting, not a build.
 
 ## How it works
@@ -27,7 +27,7 @@ first, since the hosts load it only inside `Build`, which runs after this, then 
 ### 2. Names become enums once
 
 `IDENTITIES=puls` and `PACKS=where-to-buy` are comma separated, case ignored, each name once, and parsed with
-`SettingChoice` into `IdentityKind` and `PackKind` ([ADR 0024](../../../../src/docs/adr/0024-choices-are-enums.md)).
+`SettingChoice` into `IdentityKind` and `PackKind` ([ADR 0024](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0024-choices-are-enums.md)).
 An unknown name stops start-up with `HostPacksErrorMessage`, naming the supported ones. Unset loads nothing.
 
 ### 3. Identities bring their packs
@@ -66,15 +66,15 @@ toolsets share or that is the engine's own. The host hands it to `AgentHost`, wh
 | `IDENTITIES` | The identities to load, with the packs they name (`puls`). Unset: none |
 | `PACKS` | Packs to load on their own. Unset: none beyond the identities' |
 
-Each pack's own settings are read by the pack (see its design doc). Both are in [Setup](../../../../src/docs/SETUP.md); only the Puls
+Each pack's own settings are read by the pack (see its design doc). Both are in [Setup](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/SETUP.md); only the Puls
 compose sets `IDENTITIES`.
 
 ## Extending it
 
 A new identity or pack is three edits here: a member in `IdentityKind` or `PackKind`, its arm in the `Create` switch,
 and a project reference. What proves it never comes here: no host carries a check or an eval
-([ADR 0073](../../../../src/docs/adr/0073-packs-reference-no-evals.md)). The steps are the registration step of [Build a pack](../../../../src/docs/guides/build-a-pack.md#6-register-it-in-the-composition-root)
-and of [Build an identity](../../../../src/docs/guides/build-an-identity.md#5-register-it-in-the-composition-root). A name with a dash is fine: the setting is
+([ADR 0073](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0073-packs-reference-no-evals.md)). The steps are the registration step of [Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md#6-register-it-in-the-composition-root)
+and of [Build an identity](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-an-identity.md#5-register-it-in-the-composition-root). A name with a dash is fine: the setting is
 matched to the member's `[WireName]`, as with `where-to-buy`.
 
 ## Tests
@@ -82,19 +82,19 @@ matched to the member's `[WireName]`, as with `where-to-buy`.
 `tests/Puls.HostPacks.Tests`: `PluginsTests` (the named identities load with their packs, a name twice is
 one, unset loads none, an unknown name is refused naming the supported ones, `PACKS=where-to-buy` works without an identity,
 `config/.env` is read before the settings) and `PackConvertibilityTests`, which builds every `PackKind` and checks
-each tool against the MCP SDK's shapes ([ADR 0028](../../../../src/docs/adr/0028-packs-stay-convertible-to-mcp.md)): plain data in, text
+each tool against the MCP SDK's shapes ([ADR 0028](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0028-packs-stay-convertible-to-mcp.md)): plain data in, text
 out, a `CancellationToken` when it waits, an MCP-safe name, and no identity named in a description. `Copies/UnpricedMarkTests` and `ShopTableTests` hold the
 copies a pack and an eval each keep equal.
 
 ## Limits and plans
 
 Synchronous: nothing to await yet. F36's MCP servers as packs connect here, at start-up, so this becomes async, with
-`MCP_PACKS` as a second source beside `PackKind` ([platform plan](../../../../ROADMAP.md)).
+`MCP_PACKS` as a second source beside `PackKind` ([platform plan](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/ROADMAP.md)).
 
 ## Related docs
 
-[ADR 0027](../../../../src/docs/adr/0027-engine-identities-and-packs.md) · [LouisAgent.Core](../../../../src/docs/projects/LouisAgent.Core.md) ·
-[Puls.Identity](Puls.Identity.md) · [Puls.Packs.WhereToBuy](../../../../docs/projects/Puls.Packs.WhereToBuy.md) · [Puls.Packs.ShopPrices](../../../../docs/projects/Puls.Packs.ShopPrices.md)
+[ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md) · [LouisAgent.Core](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Core.md) ·
+[Puls.Identity](Puls.Identity.md) · [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) · [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)
 
 ---
-[Projects](../../../../src/docs/projects/README.md) · Previous: [Puls.Packs.Recipes](../../../../docs/projects/Puls.Packs.Recipes.md) · Next: [LouisAgent.Cli](../../../../src/docs/projects/LouisAgent.Cli.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [Puls.Packs.Recipes](Puls.Packs.Recipes.md) · Next: [LouisAgent.Cli](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/LouisAgent.Cli.md)

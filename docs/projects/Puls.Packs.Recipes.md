@@ -12,9 +12,9 @@
 What an agent can do with recipes: search a South African recipe site, and read a recipe page into numbered
 ingredients and method lines. A model that reads a recipe page as raw text wastes its context on menus and comments
 and can slip on an amount; this pack reads the recipe the page publishes for machines (schema.org's `Recipe`) in code
-and hands the model a short, exact print. It is a pack ([ADR 0027](../../../src/docs/adr/0027-engine-identities-and-packs.md)), so
+and hands the model a short, exact print. It is a pack ([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)), so
 any identity can use it, and it could be served as an MCP server unchanged
-([ADR 0028](../../../src/docs/adr/0028-packs-stay-convertible-to-mcp.md)).
+([ADR 0028](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0028-packs-stay-convertible-to-mcp.md)).
 
 ## How it works
 
@@ -30,7 +30,7 @@ it with the setting it lacks. Its calls only read, so a round's calls run at onc
 
 `RecipeTools.FindRecipes(query, source, maxResults)` with no `source` hands the search to `RecipeScatter`: four
 enabled sites with their own search, at random, asked at once, their hits in a random order and printed
-`1. {title} · {site} · {link}` ([ADR 0078](../adr/0078-a-recipe-search-asks-several-sites.md)). Every hit is shuffled
+`1. {title} · {site} · {link}` ([ADR 0078](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0078-a-recipe-search-asks-several-sites.md)). Every hit is shuffled
 before the list is chosen, so no site or page settles on top, and a title shows without the country (`HitTitle`),
 since every site is South African; `skip` leaves out sites already asked for this dish. A named `source` looks the
 site up by its short name (any case), asks that site's `IRecipeSource` and prints `1. {title} · {link}`. At most 10,
@@ -76,8 +76,8 @@ first turn's answer is on a site of the table (the host with or without `www.`, 
 another host fails and is named, no link fails, and a first turn that broke is Unknown. How an answer writes its link
 is the identity's, so the file names a link reader beside the check
 (`{"type": "recipe-from-source", "parameters": {"reader": "recipe-link"}}`), as the shops pack's `estimates-at-shop`
-takes a price reader ([ADR 0059](../../../src/docs/adr/0059-an-identity-ships-readers-not-checks.md),
-[ADR 0073](../../../src/docs/adr/0073-packs-reference-no-evals.md)). It lives apart from the pack, in
+takes a price reader ([ADR 0059](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0059-an-identity-ships-readers-not-checks.md),
+[ADR 0073](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0073-packs-reference-no-evals.md)). It lives apart from the pack, in
 `src/Puls.Packs.Recipes.Checks/`, which only the runner references; `RecipesChecks.All` lists it for the
 demo program's `PulsCatalogs`, and the check catalogue's listing shows it with that one setting.
 
@@ -89,9 +89,9 @@ demo program's `PulsCatalogs`, and the check catalogue's listing shows it with t
 
 ## Design notes
 
-What F35 settled, and why (the [plan](https://github.com/bosbevk/louis-agent/blob/cc45cd85/docs/plans/F35-recipe-sources.md) is deleted; what it taught is in the [write-up](../../../src/docs/learning/05-structured-outputs.md)):
+What F35 settled, and why (the [plan](https://github.com/bosbevk/louis-agent/blob/cc45cd85/docs/plans/F35-recipe-sources.md) is deleted; what it taught is in the [write-up](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/learning/05-structured-outputs.md)):
 
-Data first, text second ([ADR 0067](../../../src/docs/adr/0067-a-pages-own-data-before-its-text.md)). A page that
+Data first, text second ([ADR 0067](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0067-a-pages-own-data-before-its-text.md)). A page that
 publishes a whole recipe is printed from that data; one that doesn't, or whose `Recipe` has no ingredients or no
 steps, is served as its text and labelled, so the model never takes a page's words for a recipe the page didn't mark
 up.
@@ -100,20 +100,20 @@ It makes, it does not serve. The record keeps the page's last yield text and the
 was wrong on real pages: Foodle Club writes `["1", "1 9\" milk tart"]` (printed *Serves 1* for a whole tart) and The
 Big Tasty Bite `["10", "10 pies"]`.
 
-The sites are content, not code ([ADR 0011](../../../src/docs/adr/0011-prompts-are-content.md)). A site is a row in
+The sites are content, not code ([ADR 0011](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0011-prompts-are-content.md)). A site is a row in
 `Sources/Sites/recipe-sites.md`, with the day its `robots.txt` and pages were read, and a site that later says no is a
 change to the table. The model learns the slugs from the `source` parameter's description (two examples and `*`) and
 from the answer to an unknown name, which names the enabled ones; the guide does not list them.
 
-Every fetch obeys `robots.txt` ([ADR 0068](../../../src/docs/adr/0068-every-fetch-obeys-robots-txt.md)) in the
-browser, and the browser says what it is ([ADR 0038](../../../src/docs/adr/0038-the-browser-says-what-it-is.md)); this
+Every fetch obeys `robots.txt` ([ADR 0068](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0068-every-fetch-obeys-robots-txt.md)) in the
+browser, and the browser says what it is ([ADR 0038](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0038-the-browser-says-what-it-is.md)); this
 pack adds nothing there.
 
 A search gives 10 pages, with 3 places kept for pages from outside the library (`RecipeScatter`), and a search for pap
 en sous says what else the dish is called (`QueryWords.AlsoCalled`), since a site's own search only finds the word
 it's given.
 
-Scaling (`Scaling/`, [ADR 0080](../../../src/docs/adr/0080-a-tool-when-it-improves-the-prompt.md)). `ScaleRecipe`
+Scaling (`Scaling/`, [ADR 0080](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0080-a-tool-when-it-improves-the-prompt.md)). `ScaleRecipe`
 works from the recipe we hold: `RecipeAmount` reads the amount a line starts with, in the ways sites write it, and
 writes it back as a cook would measure it; `RecipeScaler` picks the factor from the yield and prints the lines,
 numbered as the print is. It lists a step's amounts without changing the step, since the cook writes the steps and
@@ -122,7 +122,7 @@ which the print calls an estimate. A line holding an amount it can't scale is ma
 number left after the amount it scaled is marked `(only the first amount scaled)`, never passed over: it can't tell a
 pack's size from a second ingredient run into the line, so the cook decides.
 
-The library ([ADR 0082](../adr/0082-the-recipe-library-is-an-open-feed.md)). `Library/Store/` keeps each new proper
+The library ([ADR 0082](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0082-the-recipe-library-is-an-open-feed.md)). `Library/Store/` keeps each new proper
 recipe from a table site, field by field, for good, in Mongo (`MongoRecipeStore`, on `RECIPES_MONGO_URL`). A page with
 no recipe data is kept only if `Reading/PageText/` finds its recipe plainly, under its headings (`PageTextRecipe`) or,
 failing that, as a run of amounts followed by steps (`PlainRunRecipe`), and the cook's first read of it stays its
@@ -135,7 +135,7 @@ asked on every search so new recipes keep coming, and `ReadRecipe` reads our add
 from the site. The print's link stays the site's. A live text print ends at the recipe
 (`Reading/PrintedRecipeText.cs`).
 
-One photo, never one we know is gone ([ADR 0080](../../../src/docs/adr/0080-a-tool-when-it-improves-the-prompt.md)).
+One photo, never one we know is gone ([ADR 0080](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0080-a-tool-when-it-improves-the-prompt.md)).
 `Reading/Photos/PagePhotos.cs` lists where a page's photo might be, best first: what it declares, then the first real
 image after its title, with the site's own copy before an image server's. `Reading/Photos/PhotoCheck.cs` takes the
 first that isn't known to be gone, within 5 seconds each, through the guarded fetcher. A 403, a 404, no answer, no
@@ -150,12 +150,12 @@ two, in a bracket, or after a dish's name in capitals.
 
 A yield of one is doubted (`Reading/PageYield.cs`): Taste's data says `1 serving` where its page says `Serves 6 to 8`,
 so when the data says exactly one serving, the page's own words decide; with none, the yield is unknown. It's the one
-exception to reading a page's data first ([ADR 0067](../../../src/docs/adr/0067-a-pages-own-data-before-its-text.md)).
+exception to reading a page's data first ([ADR 0067](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0067-a-pages-own-data-before-its-text.md)).
 
 A numbered print, not JSON. A model quotes a line by its number, and reads a list better than braces. The same recipe
 always prints the same text, so a test can hold it.
 
-Off until named ([ADR 0023](../../../src/docs/adr/0023-copyleft-service-beside-us.md)): nothing is enabled until
+Off until named ([ADR 0023](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0023-copyleft-service-beside-us.md)): nothing is enabled until
 `RECIPE_SOURCES` names it. Puls's stacks name `*`, every site in the table; a site's terms of use are a separate
 reading, not part of its row (Louis's decision on them is in the plan's F35.2 *Approved during the build*,
 2026-11-04).
@@ -186,7 +186,7 @@ reading, not part of its row (Louis's decision on them is in the plan's F35.2 *A
 
 A site searched through the web needs a search provider configured (core's `WEB_SEARCH_PROVIDER` settings). On a
 machine whose `config/.env` sets `ROLES_ENABLED` for Puls, a server started with only `PACKS=recipes` refuses to start
-(the roles it names aren't there), so it needs `IDENTITIES=puls` too. Details in [Setup](../../../src/docs/SETUP.md).
+(the roles it names aren't there), so it needs `IDENTITIES=puls` too. Details in [Setup](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/SETUP.md).
 
 ## Extending it
 
@@ -195,7 +195,7 @@ groups for AI readers), the robots meta and `X-Robots-Tag` of a recipe page (`no
 text-and-data-mining reservation were read, with that day in the `checked` column. Set `read by` to what a recipe page
 showed (`data` or `text`) and `search` to `wordpress` when the site's own `/?s=` page is allowed and readable, else
 `web`. The table's tests then pick it up. A pack like this one from scratch is
-[Build a pack](../../../src/docs/guides/build-a-pack.md).
+[Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md).
 
 ## Tests
 
@@ -235,16 +235,16 @@ The library's screen is the framework's table with one line of its own:
 `Library/Usage/` keeps one record per UTC day in `library_usage`, on the library's database: *Kept* (a page we didn't hold
 yet), *Offered* (hits of ours a search showed, not what it held), *Served* (`ReadRecipe` from us) and *Failed* (a read we
 couldn't serve). `RecipeShelf` and `RecipeScatter` count inside the shelf's guard, so a counter that's down only logs and a
-trial that leaves the library alone counts nothing ([ADR 0083](../../../src/docs/adr/0083-packs-keep-reports-behind-the-admin-key.md)).
+trial that leaves the library alone counts nothing ([ADR 0083](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0083-packs-keep-reports-behind-the-admin-key.md)).
 `Library/Screens/RecipesUsageScreen` shows it behind the admin key as the `recipe-library` screen, listed only with a database
-([ADR 0086](../../../src/docs/adr/0086-a-packs-screens-are-described.md)). Its own view, `RecipeLibraryView` in
+([ADR 0086](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0086-a-packs-screens-are-described.md)). Its own view, `RecipeLibraryView` in
 `src/Puls.Packs.Recipes.Web`, adds the line *Of 10 offered, 1 served* above the table.
 
 `Library/Screens/` also holds what someone running the library manages it with, listed only with a database. `RecipesScreen` (`kept-recipes`) lists and searches
 what's kept, opens one as a form, and removes it; `RecipeForm` turns a recipe into its fields and back and holds its rules: a name, an ingredient and a step are
 required, and the page and the site can't change. A save marks the copy edited, and a later read can't overwrite it, since keeping only inserts. Removing also
 excludes the page. `ExcludedPagesScreen` (`excluded-pages`) lists the excluded pages and clears one, so the next read looks again
-([ADR 0082](../adr/0082-the-recipe-library-is-an-open-feed.md)).
+([ADR 0082](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0082-the-recipe-library-is-an-open-feed.md)).
 
 ## A recipe on its way out
 
@@ -252,9 +252,9 @@ excludes the page. `ExcludedPagesScreen` (`excluded-pages`) lists the excluded p
 
 ## Related docs
 
-[Build a pack](../../../src/docs/guides/build-a-pack.md) · [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) ·
-[ADR 0067](../../../src/docs/adr/0067-a-pages-own-data-before-its-text.md) · [ADR 0068](../../../src/docs/adr/0068-every-fetch-obeys-robots-txt.md) ·
-[For site owners](../../../docs/SITE_OWNERS.md)
+[Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md) · [Puls.Packs.WhereToBuy](Puls.Packs.WhereToBuy.md) ·
+[ADR 0067](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0067-a-pages-own-data-before-its-text.md) · [ADR 0068](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0068-every-fetch-obeys-robots-txt.md) ·
+[For site owners](../SITE_OWNERS.md)
 
 ## Left out, on purpose
 
@@ -262,4 +262,4 @@ The text sites' recipes as data (an ingredient-line reader over a page's text): 
 over a page (`ScreenshotPage`): its own feature when a measure asks for it.
 
 ---
-[Projects](../../../src/docs/projects/README.md) · Previous: [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md) · Next: [Puls.HostPacks](../../../docs/projects/Puls.HostPacks.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md) · Next: [Puls.HostPacks](Puls.HostPacks.md)

@@ -1,7 +1,7 @@
 # Setup: Puls
 
 > **Reference.** Puls's own files, first run and settings. **Elsewhere:** how a host loads settings, and every setting the
-> code reads, in the framework's [Configuration](../../../src/docs/SETUP.md); what each file here is in
+> code reads, in the framework's [Configuration](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/SETUP.md); what each file here is in
 > [config/](../config/README.md).
 
 ![Setup: Puls's config folder, its files, the first run, Rider, and its own settings](diagrams/SETUP.svg)
@@ -60,7 +60,7 @@ These are read by this stack or by the packs Puls loads.
 | `SHOP_PRICES_MONGO_DATABASE` | That store's database (default `shop_prices`; the collection is `price_files`) |
 | `ACCOUNTS_SQL_URL` | The accounts database (F61, ADR 0087; a secret, `config/.env.secrets`): `puls-sql` in the Puls stack, Azure SQL in the cloud. Unset, the instance has no accounts and no `/account` route |
 | `ACCOUNTS_TENANT`, `ACCOUNTS_COOKIE_DOMAIN` | The tenant a request lands in when no tenant row names its host (ADR 0088; Puls's compose sets `puls`, the library's default is `site`), and the sign-in cookie's domain (unset: the request's host) |
-| `AUTH_GOOGLE_CLIENT_ID`, `AUTH_GOOGLE_CLIENT_SECRET`, `AUTH_MICROSOFT_…`, `AUTH_LINKEDIN_…` | Sign in through a provider (F61.3; secrets, `config/.env.secrets`): a provider is on only with both its keys ([how to get them](../../../src/docs/guides/register-a-sign-in-provider.md)) |
+| `AUTH_GOOGLE_CLIENT_ID`, `AUTH_GOOGLE_CLIENT_SECRET`, `AUTH_MICROSOFT_…`, `AUTH_LINKEDIN_…` | Sign in through a provider (F61.3; secrets, `config/.env.secrets`): a provider is on only with both its keys ([how to get them](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/register-a-sign-in-provider.md)) |
 | `MSSQL_SA_PASSWORD` | In `config/.env.sql`, not here: the accounts database's sa password, read only by `puls-sql`; `ACCOUNTS_SQL_URL` carries the same one |
 | `ACCOUNTS_SQL_TEST_URL` | Set in the shell, not in a file: the SQL Server the accounts' integration tests build their databases on (`Server=127.0.0.1,1433;User Id=sa;Password=…;TrustServerCertificate=true`); unset, they skip |
 | `RECIPE_SOURCES` | The recipe sites the `recipes` toolset may search (F35), comma-separated slugs from the pack's table (`foodandhome,thelazymakoti`), or `*` for every site in it. Unset, the toolset is off; it needs `BROWSER_URL` too, and a site searched through the web needs a search provider (ADR 0023) |
@@ -68,4 +68,4 @@ These are read by this stack or by the packs Puls loads.
 | `EVALS_MONGO_URL` (was `BENCHMARKS_MONGO_URL`, still read; the Mongo contract tests read only the old name) | How Puls reaches the eval store: `mongodb://{user}:{password}@puls-mongo:27017/?authSource=admin` (the service name). From the host, for the Mongo contract tests, the same with `127.0.0.1`, set in the shell. Without it the portal starts no runs |
 
 ---
-[Docs index](README.md) · Related: [Configuration](../../../src/docs/SETUP.md) · [Deploy the sites](../../../src/docs/guides/deploy-the-sites.md)
+[Docs index](README.md) · Related: [Configuration](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/SETUP.md) · [Deploy the sites](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/deploy-the-sites.md)

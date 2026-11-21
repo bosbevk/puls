@@ -5,7 +5,7 @@
 # Then open http://127.0.0.1:5070. One container: a chat answers the web itself and hands cooking to a specialist on
 # this same instance (AGENT_PEERS names itself, F29; CL19 dropped the second container). Puls hasn't run on Azure
 # since FX122.
-# To see its logs and traces, start the dashboard first (F52):
+# To see its logs and traces, start the dashboard first (F52), from a louis-agent checkout:
 #   docker compose -f demos/louis-agent/docker/docker-compose.observability.yml up -d
 name: puls
 
@@ -19,11 +19,15 @@ x-puls-env: &puls-env
 services:
   puls:
     build:
-      context: ../../..
+      context: ..
       dockerfile: docker/images/Dockerfile.puls
       args:
         # The commit the eval runner stamps on a run: EVAL_COMMIT=$(git rev-parse --short HEAD) docker compose … up -d --build
         EVAL_COMMIT: ${EVAL_COMMIT:-unknown}
+      # The framework comes from GitHub Packages; the restore signs in with GITHUB_PACKAGES_TOKEN from the shell that
+      # starts the build (a token with read:packages), handed to it as a build secret so no image layer keeps it.
+      secrets:
+        - github_packages_token
     image: louis-agent-puls:latest
     container_name: puls
     <<: *puls-env
@@ -190,6 +194,10 @@ services:
       - --log-level=0
 networks:
   web:
+
+secrets:
+  github_packages_token:
+    environment: GITHUB_PACKAGES_TOKEN
 
 volumes:
   # The accounts database's files (F61.1); `docker compose down -v` is what deletes them.

@@ -12,10 +12,10 @@
 What an agent can do to say where to buy something: find a shop's branches near the user, with their streets and
 places, and say which one is the town's. A model reading a map's search page guesses at what's near; this pack asks
 the map in code and hands the model a short table. It is a pack
-([ADR 0027](../../../src/docs/adr/0027-engine-identities-and-packs.md)), so any identity can use it, and it could be served as an MCP
-server unchanged ([ADR 0028](../../../src/docs/adr/0028-packs-stay-convertible-to-mcp.md)). It isn't tied to food: any shop with a
+([ADR 0027](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0027-engine-identities-and-packs.md)), so any identity can use it, and it could be served as an MCP
+server unchanged ([ADR 0028](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0028-packs-stay-convertible-to-mcp.md)). It isn't tied to food: any shop with a
 name on the map is the same call. It replaced the shops pack, which read Checkers' own catalogue, in F50.2
-([ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md)); prices are the `shop-prices` pack's job
+([ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md)); prices are the `shop-prices` pack's job
 ([Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)).
 
 ## How it works
@@ -69,7 +69,7 @@ app, a ten-second limit. A map that doesn't answer is logged and said, never ret
 
 The checks an eval file names to prove an answer about shops live apart from the pack, in
 `src/Puls.Packs.WhereToBuy.Checks/`, which only the runner references (F49.3,
-[ADR 0073](../../../src/docs/adr/0073-packs-reference-no-evals.md)): `estimates-at-shop` (no shop page read, no price
+[ADR 0073](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0073-packs-reference-no-evals.md)): `estimates-at-shop` (no shop page read, no price
 given as fact, the estimates line, the branch under Where to buy) and `untooled-shops` (no column of a shop's prices).
 
 ![The where-to-buy pack: finding branches on the map](diagrams/Puls.Packs.WhereToBuy-diagrams.svg)
@@ -115,7 +115,7 @@ people use for it is a line in `ShopNames`.
 
 Another map (our own Nominatim, a paid geocoder) is another `MapSearch`, behind an interface when a second one exists.
 
-A new pack like this one is [Build a pack](../../../src/docs/guides/build-a-pack.md).
+A new pack like this one is [Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md).
 
 ## Tests
 
@@ -134,8 +134,8 @@ shape; a live check against the real service is a hand check.
 
 ## Related docs
 
-[Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md) · [Build a pack](../../../src/docs/guides/build-a-pack.md) ·
-[Puls.Identity](../../../docs/projects/Puls.Identity.md) · [ADR 0069](../adr/0069-shop-prices-are-stats-sa-estimates.md)
+[Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md) · [Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md) ·
+[Puls.Identity](Puls.Identity.md) · [ADR 0069](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/packs/docs/adr/0069-shop-prices-are-stats-sa-estimates.md)
 
 ---
-[Projects](../../../src/docs/projects/README.md) · Previous: [Puls.Judges](../../../docs/projects/Puls.Judges.md) · Next: [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)
+[Projects](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/projects/README.md) · Previous: [Puls.Judges](Puls.Judges.md) · Next: [Puls.Packs.ShopPrices](Puls.Packs.ShopPrices.md)

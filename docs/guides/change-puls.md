@@ -3,7 +3,7 @@
 > **How-to.** Change `src/Puls.Identity`, who Puls is: its voice and routing, a new language, a new
 > specialist or minion, the packs it names, and how to test and try a change. **Elsewhere:** how the identity works in
 > [Puls.Identity](../projects/Puls.Identity.md); a new identity from scratch in
-> [Build an identity](../../../../src/docs/guides/build-an-identity.md); the web app in [Change the Puls web app](change-the-puls-app.md).
+> [Build an identity](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-an-identity.md); the web app in [Change the Puls web app](change-the-puls-app.md).
 
 ![Change Puls: its prompts, a language, a specialist, a minion, its packs, and the tests that pin what the model reads](../diagrams/change-puls.svg)
 
@@ -23,7 +23,7 @@ it opened with, so start a new chat to see the change.
 | `prompts/minions/puls-minion.md`, `puls-minion-{function}.md` | 2 | What every minion is, then one minion's function |
 
 `prompts/shared/principles.md` in core opens every one of them
-([ADR 0020](../../../../src/docs/adr/0020-principles-for-every-agent.md)).
+([ADR 0020](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0020-principles-for-every-agent.md)).
 
 ## Change what Puls says or does
 
@@ -32,7 +32,7 @@ because the languages must keep the same sections, and `PulsPromptsTests` checks
 
 Where a request goes is the routing in `voice.md`. Its first table, *Where the answer is*, says which toolset and
 which specialist a kind of request needs. Puls routes only what Puls does
-([ADR 0019](../../../../src/docs/adr/0019-modes-one-file-per-product.md)): for anything else it says, in one line, that
+([ADR 0019](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0019-modes-one-file-per-product.md)): for anything else it says, in one line, that
 the part isn't available yet, and answers what it can.
 
 What a specialist does is its own file in `specialists/`.
@@ -53,7 +53,7 @@ What a specialist does is its own file in `specialists/`.
 A specialist is measured before Puls hands it any work, so the order of these steps matters.
 
 1. Write `specialists/puls-{name}.md`: its function, what it may and may not do, and how it reports to Puls. It opens
-   with the header every prompt has ([ADR 0063](../../../../src/docs/adr/0063-a-prompt-says-what-it-is.md)): its name,
+   with the header every prompt has ([ADR 0063](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0063-a-prompt-says-what-it-is.md)): its name,
    a description and its level. The loader strips the header before the model sees it.
 
    ```markdown
@@ -67,14 +67,14 @@ A specialist is measured before Puls hands it any work, so the order of these st
 
    If the role always needs a toolset, list it under `metadata` as `toolsets: web`. A toolset named bare is required,
    so a missing pack refuses the role; with a `?` (`web?`) it loads only where the instance has it
-   ([ADR 0025](../../../../src/docs/adr/0025-a-role-declares-its-toolsets.md)). Today only the cook declares toolsets,
+   ([ADR 0025](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/adr/0025-a-role-declares-its-toolsets.md)). Today only the cook declares toolsets,
    and `PulsIdentityTests.TheCookDeclaresItsToolsets_AndNoOtherRoleDoes` pins that, so a new role with toolsets
    changes that test too.
 2. Name it in the identity. Add a member to `PulsRole` with its file name (`puls-{name}`) and one to `PulsCall` with
    its address (`puls.{name}`). `PulsRoleTests` fails while a role file has no member, and
    `Puls_CallsItsFiveSpecialists_AndRelaysTheirAnswersWhole` lists the specialists Puls may ask, so add yours there.
 3. Measure it before users see it. Give it an eval folder in
-   `src/Puls.Evals/Evals/` ([Add an eval](../../../../src/docs/guides/add-an-eval.md)),
+   `src/Puls.Evals/Evals/` ([Add an eval](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/add-an-eval.md)),
    with a mode where Puls answers alone to compare against. The cook's eval does this with its `puls-tools` mode, in
    which Puls has the shop tools itself, beside its `puls-cook` mode, in which it asks the cook.
 4. Once it has passed, route to it. Add its rows to `voice.md`: one in *Where the answer is*, and one in *Choosing the
@@ -85,7 +85,7 @@ A specialist is measured before Puls hands it any work, so the order of these st
    role that isn't listed is refused, and start-up refuses a listed name the instance doesn't have.
 
 If the specialist needs a capability Puls doesn't have, that's a pack
-([Build a pack](../../../../src/docs/guides/build-a-pack.md)). Name it in `PulsIdentity.Packs`, and never reference
+([Build a pack](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/build-a-pack.md)). Name it in `PulsIdentity.Packs`, and never reference
 it as a project.
 
 ## Add a minion's function
@@ -127,4 +127,4 @@ so ask first.
 - [ ] A new capability is a pack named in `PulsIdentity.Packs`, not code in the identity.
 
 ---
-[Guides](../../../../src/docs/guides/README.md) · [Docs index](../../../../src/docs/README.md)
+[Guides](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/guides/README.md) · [Docs index](https://github.com/bosbevk/louis-agent/blob/puls-moved-out/src/docs/README.md)
