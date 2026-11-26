@@ -44,5 +44,8 @@ holds the commands that made the move, kept as the record of what was done.
 
 ## Licence
 
-Puls is free to use, change and share for any noncommercial purpose under the PolyForm Noncommercial License 1.0.0;
-see [LICENSE](LICENSE). Commercial use needs a separate licence from the copyright holder first.
+Puls is open source under the MIT License, since 2026-11-25; see [LICENSE](LICENSE). Anyone may use, change, share and
+sell it, commercial use included, as long as the copyright notice and the licence go with it. Versions released
+before keep the licence they were released with, PolyForm Noncommercial 1.0.0 here and the licences of Puls's history
+in louis-agent. Puls is built on the louis-agent framework's packages, which carry their own licence, as do other
+third-party components.
